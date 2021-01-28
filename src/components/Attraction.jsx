@@ -139,7 +139,7 @@ export default class Attraction extends React.Component {
             <Tickets current={current} />
             <Images images={current.imageUrl} travelersChoice={current.travelersChoiceAward} />
           </div>
-        ) : <div className={css.loading}>Loading...</div>}
+        ) : <div className={css.loading}>Loading...new1</div>}
       </>
     );
   }
