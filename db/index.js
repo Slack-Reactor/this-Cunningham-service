@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// mongoose.connect('mongodb://localhost:27017/tripAdvisor' if not using docker
 module.exports.connect = mongoose.connect('mongodb://mongo:27017/tripAdvisor', {
   useNewUrlParser: true, useUnifiedTopology: true,
 })
