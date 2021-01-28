@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV HTTP_PROXY="http://ec2-3-139-68-84.us-east-2.compute.amazonaws.com"
+# ENV HTTP_PROXY="http://ec2-3-139-68-84.us-east-2.compute.amazonaws.com"
 
 COPY . .
 RUN npm run build:prod

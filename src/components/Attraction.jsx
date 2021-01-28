@@ -5,6 +5,7 @@ import Overview from './Overview';
 import Tickets from './Tickets';
 import Images from './Images';
 import css from '../styles/attraction.module.css';
+// const awsDNS = 'http://ec2-3-139-68-84.us-east-2.compute.amazonaws.com';
 
 export default class Attraction extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class Attraction extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/showcase')
+    axios.get('/api/showcase')
       .then(({ data }) => {
         this.setState({
           current: data[1],
