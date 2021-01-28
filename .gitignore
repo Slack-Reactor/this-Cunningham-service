@@ -18,5 +18,5 @@ public/bundle.js
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 docker-compose.debug.yml
-docker-compose.yml
+# docker-compose.yml
 data
