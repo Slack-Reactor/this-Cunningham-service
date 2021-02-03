@@ -5,11 +5,14 @@ import Overview from './Overview';
 import Tickets from './Tickets';
 import Images from './Images';
 import css from '../styles/attraction.module.css';
+// const awsDNS = 'http://ec2-3-139-68-84.us-east-2.compute.amazonaws.com';
+const tripLogo = 'https://fec-tripadvisor-images.s3.us-east-2.amazonaws.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered-small_RGB.svg';
 
 export default class Attraction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      allAttractions: [],
       current: null,
       likeHover: false,
       form: {
@@ -19,7 +22,9 @@ export default class Attraction extends React.Component {
         address: '',
       },
       clickImproved: false,
+      browse: false,
     };
+    this.buttonBrowser = this.buttonBrowser.bind(this);
     this.updateHeartHover = this.updateHeartHover.bind(this);
     this.updateLikeStatus = this.updateLikeStatus.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
@@ -28,10 +33,11 @@ export default class Attraction extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/showcase')
+    axios.get('/api/showcase')
       .then(({ data }) => {
         this.setState({
-          current: data[1],
+          allAttractions: data,
+          current: data[0],
         });
       }).catch((err) => console.log('error GETTING all', err));
   }
@@ -54,6 +60,12 @@ export default class Attraction extends React.Component {
         ...form,
         [e.target.name]: newValue,
       },
+    });
+  }
+
+  buttonBrowser(attraction) {
+    this.setState({
+      current: attraction,
     });
   }
 
@@ -114,12 +126,22 @@ export default class Attraction extends React.Component {
 
   render() {
     const {
-      current, likeHover, form, clickImproved,
+      current, likeHover, form, clickImproved, allAttractions, browse,
     } = this.state;
     return (
       <>
         {current ? (
           <div className={css.attraction}>
+            <div className={css.trip} onClick={() => this.setState({ browse: !browse })}>
+              <img src={tripLogo} alt="triplogo" />
+            </div>
+            {browse && (
+            <div className={css.buttons}>
+              {allAttractions.map((attraction, i) => (
+                <button key={Math.random().toString()} className={css.browseButton} type="button" onClick={() => this.buttonBrowser(attraction)}>{i}</button>
+              ))}
+            </div>
+            )}
             <Header
               current={current}
               updateHeartHover={this.updateHeartHover}
@@ -136,9 +158,13 @@ export default class Attraction extends React.Component {
               id={current._id} /* eslint-disable-line no-underscore-dangle */
             />
             <Tickets current={current} />
-            <Images images={current.imageUrl} travelersChoice={current.travelersChoiceAward} />
+            <Images
+              images={current.imageUrl}
+              travelersChoice={current.travelersChoiceAward}
+              id={current._id} /* eslint-disable-line no-underscore-dangle */
+            />
           </div>
-        ) : <div className={css.loading}>Loading...</div>}
+        ) : <div className={css.loading}>Loading...new1</div>}
       </>
     );
   }
