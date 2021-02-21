@@ -25,11 +25,11 @@ export default class Attraction extends React.Component {
       browse: false,
     };
     this.buttonBrowser = this.buttonBrowser.bind(this);
+    this.openCloseForm = this.openCloseForm.bind(this);
+    this.handleFormChange = this.handleFormChange.bind(this);
     this.updateHeartHover = this.updateHeartHover.bind(this);
     this.updateLikeStatus = this.updateLikeStatus.bind(this);
-    this.handleFormChange = this.handleFormChange.bind(this);
     this.submitImprovements = this.submitImprovements.bind(this);
-    this.openCloseForm = this.openCloseForm.bind(this);
   }
 
   componentDidMount() {

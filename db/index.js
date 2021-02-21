@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017/tripAdvisor' if not using docker
-module.exports.connect = mongoose.connect('mongodb://mongo:27017/tripAdvisor', {
+
+module.exports.connect = mongoose.connect('mongodb://localhost:27017/tripAdvisor', {
+// module.exports.connect = mongoose.connect('mongodb://mongo:27017/tripAdvisor', { // for docker
   useNewUrlParser: true, useUnifiedTopology: true,
 })
   .then(() => console.log('Success connecting to mongo Trip Advisor'))
@@ -16,17 +17,14 @@ const showcaseSchema = new mongoose.Schema({
   overview: {
     description: String,
     isOpen: Boolean,
-    // stretch goal to display all hours on click
     suggestedDuration: Number,
     address: String,
-    // stretch goal to have map image link you can click on (could be fake map)
   },
   imageUrl: [String, String, String, String, String],
   travelersChoiceAward: Boolean,
   likedStatus: Boolean,
   ticketPrice: Number,
   averageRating: Number,
-  // availability: Date (Stretch goal)
 });
 
 const ShowCase = mongoose.model('Showcase', showcaseSchema);
