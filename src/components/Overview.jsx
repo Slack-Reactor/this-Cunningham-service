@@ -18,7 +18,7 @@ const Overview = ({
     <div className={css.time}>
       <CgSandClock className={css.timeIcon} size={25} />
       <p className={css.duration}>
-        <strong>Suggested Duration: </strong>{overview.suggestedDuration} minutes
+        <strong>Suggested Duration: </strong>{overview.suggestedDuration > 60 ? `${(overview.suggestedDuration / 60).toFixed(1)} hours` : `${overview.suggestedDuration} minutes`}
       </p>
     </div>
     <div className={css.addressWithIcon}>
