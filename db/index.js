@@ -8,6 +8,7 @@ module.exports.connect = mongoose.connect('mongodb://localhost:27017/tripAdvisor
   .catch((err) => console.log('err connecting to mongo', err));
 
 const showcaseSchema = new mongoose.Schema({
+  attractionId: Number,
   attractionTitle: String,
   city: String,
   reviews: Number,

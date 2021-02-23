@@ -102,6 +102,7 @@ const bools = [true, false];
 
 class Attraction {
   constructor(id) {
+    this.attractionId = id;
     this.attractionTitle = randomGenerator(null, attractionTitles);
     this.city = randomGenerator(null, cities);
     this.relativeRanking = [randomGenerator(1, 34), randomGenerator(35, 101)];
