@@ -112,6 +112,7 @@ class Attraction {
     this.overview = {
       description: randomGenerator(null, descriptions),
       isOpen: randomGenerator(null, bools),
+      hours: { open: randomGenerator(7, 12), close: randomGenerator(2, 10) },
       suggestedDuration: randomGenerator(0, 200),
       address: randomGenerator(null, addresses),
     };
