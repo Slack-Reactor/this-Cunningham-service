@@ -23,6 +23,10 @@ h1 {
   justify-content: space-between;
 }
 
+.bubbles-reviews {
+  display: flex;
+}
+
 .bubbles {
   height: 16px;
   width: auto;
