@@ -25,6 +25,7 @@ h1 {
 
 .bubbles-reviews {
   display: flex;
+  align-items: center;
 }
 
 .bubbles {
