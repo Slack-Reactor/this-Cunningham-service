@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import axios from 'axios';
 import Header from './Header';
