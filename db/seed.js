@@ -123,7 +123,7 @@ class Attraction {
     this.ticketPrice = randomGenerator(0, 500);
     this.averageRating = randomGenerator(0, 25) / 5;
     this.closedDays = Array.from(new Array(randomGenerator(40, 80)), () => (
-      faker.date.future(1)
+      new Date(faker.date.future(1))
     ));
   }
 }

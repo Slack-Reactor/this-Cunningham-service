@@ -27,7 +27,7 @@ const showcaseSchema = new mongoose.Schema({
   likedStatus: Boolean,
   ticketPrice: Number,
   averageRating: Number,
-  closedDays: [String],
+  closedDays: [Date],
 });
 
 const ShowCase = mongoose.model('Showcase', showcaseSchema);
