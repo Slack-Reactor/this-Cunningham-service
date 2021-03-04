@@ -1,9 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GrTicket } from 'react-icons/gr';
+import Calendar from './Calendar';
+import Modal from './Modal';
 import css from '../styles/tickets.module.css';
 
-const Tickets = ({ current }) => (
+const Tickets = ({ current, openCalendar, blackouts }) => (
   <div className={css.tickets}>
     <div className={css.ticketContainer}>
       <div className={css.ticketTitle}>
@@ -22,6 +25,11 @@ const Tickets = ({ current }) => (
       </div>
       <button className={css['get-tix-btn']} type="button">Check Availability</button>
     </div>
+    {openCalendar && (
+      <Modal>
+        <Calendar blackouts={blackouts} />
+      </Modal>
+    )}
   </div>
 );
 
