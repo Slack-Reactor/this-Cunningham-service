@@ -6,7 +6,7 @@ import Calendar from './Calendar';
 import Modal from './Modal';
 import css from '../styles/tickets.module.css';
 
-const Tickets = ({ current, openCalendar, blackouts, handleTicketClick }) => {
+const Tickets = ({ current, blackouts }) => {
   const [calendarView, setCalendarView] = useState(false);
   const toggleCalendar = () => setCalendarView((v) => !v);
 
