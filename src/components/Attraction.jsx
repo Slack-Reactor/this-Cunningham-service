@@ -25,7 +25,6 @@ export default class Attraction extends React.Component {
         address: '',
       },
       clickImproved: false,
-      openCalendar: false,
       browse: false,
     };
     this.buttonBrowser = this.buttonBrowser.bind(this);
@@ -169,7 +168,10 @@ export default class Attraction extends React.Component {
               submitImprovements={this.submitImprovements}
               id={current._id} /* eslint-disable-line no-underscore-dangle */
             />
-            <Tickets current={current} openCalendar={openCalendar} blackouts={current.closedDays} />
+            <Tickets
+              current={current}
+              blackouts={current.closedDays}
+            />
             <Images
               images={current.imageUrl}
               travelersChoice={current.travelersChoiceAward}
