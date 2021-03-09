@@ -40,4 +40,26 @@
 }
 
 .ticketText {
+  margin: 0 5px;
+}
+
+.purchaseTickets {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.purchaseTickets>h2 {
+  margin-right: 5px;
+}
+
+.purchaseBtn {
+  height: 50px;
+  background-color: #34E0A1;
+  color: #000000;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 5px;
 }

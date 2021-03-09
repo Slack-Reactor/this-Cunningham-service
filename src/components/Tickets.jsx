@@ -31,7 +31,7 @@ const Tickets = ({ current, blackouts }) => {
       </div>
       {calendarView && (
         <Modal type="calendarModal">
-          <Calendar blackouts={blackouts} />
+          <Calendar blackouts={blackouts} price={current.ticketPrice} />
         </Modal>
       )}
     </div>
