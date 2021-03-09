@@ -69,9 +69,10 @@ const Calendar = ({ blackouts, price }) => {
           decrement={() => decrement('child')}
         />
         <div className={css.purchaseTickets}>
-          <h2>Price: ${(price * adultCount) + ((price * childCount) / 2)}</h2>
           <button className={css.purchaseBtn}>Purchase</button>
+          <h2>Price: ${(price * adultCount) + ((price * childCount) / 2)}</h2>
         </div>
+        <p>* This Attraction is closed on grayed out days</p>
       </div>
     </div>
   );
