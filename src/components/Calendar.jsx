@@ -1,10 +1,11 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import css from '../styles/calendar.module.css';
 
-const TicketCounter = () => {
+const TicketCounter = ({ type }) => {
   const [count, setCount] = useState(0);
   const increment = () => {
     if (count === 10) return;
@@ -17,10 +18,10 @@ const TicketCounter = () => {
 
   return (
     <div className={css.counter}>
-      <button onClick={decrement}>-</button>
-      <span>{count}</span>
-      <button onClick={increment}>+</button>
-      Tickets
+      <button className={css.counterButton} onClick={decrement}>-</button>
+      <div className={css.count}>{count}</div>
+      <button className={css.counterButton} onClick={increment}>+</button>
+      <div className={css.ticketText}>{type} Tickets</div>
     </div>
   );
 };
@@ -45,8 +46,8 @@ const Calendar = ({ blackouts }) => (
     </style>
     <DayPicker disabledDays={blackouts.map((item) => new Date(item))} />
     <div className={css.ticketCounter}>
-      <TicketCounter />
-      <TicketCounter />
+      <TicketCounter type="Adult" />
+      <TicketCounter type="Child" />
     </div>
   </div>
 );

@@ -9,7 +9,7 @@ const ImproveListing = ({
 }) => (
   <div className={css.improveListing}>
     {clicked ? (
-      <Modal>
+      <Modal type="suggestionsModal">
         <form className={css.improve} onSubmit={(e) => submitImprovements(id, e)}>
           <div className={css['form-flex']}>
             <h2 className={css.formHeader}>Suggest Edits</h2>

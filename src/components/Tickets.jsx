@@ -30,7 +30,7 @@ const Tickets = ({ current, blackouts }) => {
         <button className={css['get-tix-btn']} type="button" onClick={toggleCalendar}>Check Availability</button>
       </div>
       {calendarView && (
-        <Modal>
+        <Modal type="calendarModal">
           <Calendar blackouts={blackouts} />
         </Modal>
       )}
