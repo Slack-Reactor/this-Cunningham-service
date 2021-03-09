@@ -113,7 +113,7 @@ class Attraction {
     this.overview = {
       description: randomGenerator(null, descriptions),
       isOpen: randomGenerator(null, bools),
-      hours: { open: randomGenerator(7, 12), close: randomGenerator(2, 10) },
+      hours: { open: randomGenerator(7, 12), close: randomGenerator(2, 11) },
       suggestedDuration: randomGenerator(0, 200),
       address: randomGenerator(null, addresses),
     };
@@ -123,7 +123,7 @@ class Attraction {
     this.ticketPrice = randomGenerator(0, 500);
     this.averageRating = randomGenerator(0, 25) / 5;
     this.closedDays = Array.from(new Array(randomGenerator(40, 80)), () => (
-      faker.date.future(365)
+      new Date(faker.date.future(1))
     ));
   }
 }
@@ -132,7 +132,6 @@ const seedData = [];
 
 for (let i = 0; i < 100; i += 1) {
   const newAttraction = new Attraction(i);
-
   seedData.push(newAttraction);
 }
 

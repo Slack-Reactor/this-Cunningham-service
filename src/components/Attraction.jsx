@@ -29,6 +29,7 @@ export default class Attraction extends React.Component {
     };
     this.buttonBrowser = this.buttonBrowser.bind(this);
     this.openCloseForm = this.openCloseForm.bind(this);
+    this.openCalendar = this.openCalendar.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
     this.updateHeartHover = this.updateHeartHover.bind(this);
     this.updateLikeStatus = this.updateLikeStatus.bind(this);
@@ -69,6 +70,13 @@ export default class Attraction extends React.Component {
   buttonBrowser(attraction) {
     this.setState({
       current: attraction,
+    });
+  }
+
+  openCalendar() {
+    const { openCalendar } = this.state;
+    this.setState({
+      openCalendar: !openCalendar,
     });
   }
 
@@ -129,7 +137,7 @@ export default class Attraction extends React.Component {
 
   render() {
     const {
-      current, likeHover, form, clickImproved, allAttractions, browse,
+      current, likeHover, form, clickImproved, allAttractions, browse, openCalendar,
     } = this.state;
     return (
       <>
@@ -160,7 +168,10 @@ export default class Attraction extends React.Component {
               submitImprovements={this.submitImprovements}
               id={current._id} /* eslint-disable-line no-underscore-dangle */
             />
-            <Tickets current={current} />
+            <Tickets
+              current={current}
+              blackouts={current.closedDays}
+            />
             <Images
               images={current.imageUrl}
               travelersChoice={current.travelersChoiceAward}

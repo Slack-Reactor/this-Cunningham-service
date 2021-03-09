@@ -14,7 +14,7 @@ const Overview = ({
     <h4 className={css['overview-header']}>Overview</h4>
     <p className={css.description}>{overview.description}</p>
     <div className={css.clock}>
-      <FaRegClock size={20} /><p className={css['open-closed']}><strong>{overview.isOpen ? 'Open Now' : 'Closed'}:</strong> {'{overview.hours.open}am - {overview.hours.closed}pm'} </p>
+      <FaRegClock size={20} /><p className={css['open-closed']}><strong>{overview.isOpen ? 'Open Now' : 'Closed'}:</strong> {overview.hours.open > 12 ? `${overview.hours.open - 12}pm` : `${overview.hours.open}am`} - {overview.hours.close}pm </p>
     </div>
     <div className={css.time}>
       <CgSandClock className={css.timeIcon} size={25} />

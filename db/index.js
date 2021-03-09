@@ -20,12 +20,14 @@ const showcaseSchema = new mongoose.Schema({
     isOpen: Boolean,
     suggestedDuration: Number,
     address: String,
+    hours: { open: Number, close: Number },
   },
   imageUrl: [String, String, String, String, String],
   travelersChoiceAward: Boolean,
   likedStatus: Boolean,
   ticketPrice: Number,
   averageRating: Number,
+  closedDays: [Date],
 });
 
 const ShowCase = mongoose.model('Showcase', showcaseSchema);
