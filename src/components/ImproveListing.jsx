@@ -5,12 +5,12 @@ import Modal from './Modal';
 import css from '../styles/improveListing.module.css';
 
 const ImproveListing = ({
-  clicked, form, handleFormChange, openCloseForm, submitImprovements, id,
+  clicked, form, handleFormChange, openCloseForm, submitImprovements,
 }) => (
   <div className={css.improveListing}>
     {clicked ? (
       <Modal type="suggestionsModal">
-        <form className={css.improve} onSubmit={(e) => submitImprovements(id, e)}>
+        <form className={css.improve} onSubmit={submitImprovements}>
           <div className={css['form-flex']}>
             <h2 className={css.formHeader}>Suggest Edits</h2>
             Description<br />
