@@ -48,7 +48,6 @@ ImproveListing.propTypes = {
   handleFormChange: PropTypes.func,
   openCloseForm: PropTypes.func,
   submitImprovements: PropTypes.func,
-  id: PropTypes.string,
 };
 
 ImproveListing.defaultProps = {
@@ -59,7 +58,6 @@ ImproveListing.defaultProps = {
   handleFormChange: () => {},
   openCloseForm: () => {},
   submitImprovements: () => {},
-  id: 'Invalid',
 };
 
 export default ImproveListing;

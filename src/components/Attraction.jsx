@@ -81,7 +81,7 @@ const Attraction = () => {
   const [current, setCurrent] = useState(null);
   const [likeHover, setLikeHover] = useState(false);
   const [browse, setBrowse] = useState(false);
-  const likeStatusRef = useRef();
+
   const {
     form,
     clickImproved,
@@ -100,19 +100,17 @@ const Attraction = () => {
 
   const updateHeartHover = () => setLikeHover((h) => !h);
   const updateLikeStatus = () => {
-    setCurrent({
-      ...current,
-      likedStatus: !current.likedStatus,
-    });
-  };
-  useEffect(() => {
-    if (current) {
-      axios.patch(`api/showcase/like/${current._id}`, { likedStatus: !current.likedStatus })
-        .catch((err) => {
-          console.log('Error PATCH likedStatus ', err);
+    axios.patch(`api/showcase/like/${current._id}`, { likedStatus: !current.likedStatus })
+      .then(() => {
+        setCurrent({
+          ...current,
+          likedStatus: !current.likedStatus,
         });
-    }
-  }, [current ? current.likedStatus : current]);
+      })
+      .catch((err) => {
+        console.log('Error PATCH likedStatus ', err);
+      });
+  };
 
   return (
     <>
@@ -141,7 +139,6 @@ const Attraction = () => {
             openCloseForm={() => openCloseForm(current)}
             handleFormChange={handleFormChange}
             submitImprovements={((e) => submitImprovements(current._id, e, current))}
-            id={current._id} /* eslint-disable-line no-underscore-dangle */
           />
           <Tickets
             current={current}
@@ -159,176 +156,3 @@ const Attraction = () => {
 };
 
 export default Attraction;
-
-// export default class Attraction extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       allAttractions: [],
-//       current: null,
-//       likeHover: false,
-//       form: {
-//         description: '',
-//         isOpen: false,
-//         suggestedDuration: 0,
-//         address: '',
-//       },
-//       clickImproved: false,
-//       browse: false,
-//     };
-//     this.buttonBrowser = this.buttonBrowser.bind(this);
-//     this.openCloseForm = this.openCloseForm.bind(this);
-//     this.openCalendar = this.openCalendar.bind(this);
-//     this.handleFormChange = this.handleFormChange.bind(this);
-//     this.updateHeartHover = this.updateHeartHover.bind(this);
-//     this.updateLikeStatus = this.updateLikeStatus.bind(this);
-//     this.submitImprovements = this.submitImprovements.bind(this);
-//   }
-
-//   componentDidMount() {
-//     axios.get('/api/showcase')
-//       .then(({ data }) => {
-//         this.setState({
-//           allAttractions: data,
-//           current: data[0],
-//         });
-//       }).catch((err) => console.log('error GETTING all', err));
-//   }
-
-//   handleFormChange(e) {
-//     const { form } = this.state;
-//     // must copy new value, cannot modify e.target.value directly
-//     let newValue = e.target.value;
-//     if (e.target.name === 'suggestedDuration') {
-//       newValue = Number(newValue);
-//     }
-//     if (newValue === 'true') {
-//       newValue = true;
-//     }
-//     if (newValue === 'false') {
-//       newValue = false;
-//     }
-//     this.setState({
-//       form: {
-//         ...form,
-//         [e.target.name]: newValue,
-//       },
-//     });
-//   }
-
-//   buttonBrowser(attraction) {
-//     this.setState({
-//       current: attraction,
-//     });
-//   }
-
-//   openCalendar() {
-//     const { openCalendar } = this.state;
-//     this.setState({
-//       openCalendar: !openCalendar,
-//     });
-//   }
-
-//   openCloseForm() {
-//     const { clickImproved, form, current } = this.state;
-//     const {
-//       description, address, isOpen, suggestedDuration,
-//     } = current.overview;
-
-//     this.setState({
-//       clickImproved: !clickImproved,
-//       form: {
-//         ...form,
-//         description,
-//         address,
-//         isOpen,
-//         suggestedDuration,
-//       },
-//     });
-//   }
-
-//   submitImprovements(id, e) {
-//     e.preventDefault();
-//     const { form, current } = this.state;
-//     if (JSON.stringify(form) === JSON.stringify(current.overview)) {
-//       console.log('Must Submit Improvements to Current Attraction Listing');
-//     } else {
-//       axios.post(`/api/showcase/${id}`, { form })
-//         .then(({ data }) => {
-//           this.openCloseForm();
-//           console.log(data.message);
-//         })
-//         .catch((err) => console.log('error', err));
-//     }
-//   }
-
-//   updateHeartHover() {
-//     const { likeHover } = this.state;
-//     this.setState({
-//       likeHover: !likeHover,
-//     });
-//   }
-
-//   updateLikeStatus(id) {
-//     const { current } = this.state;
-//     this.setState({
-//       current: {
-//         ...current,
-//         likedStatus: !current.likedStatus,
-//       },
-//     }, () => {
-//       axios.patch(`api/showcase/like/${id}`, { likedStatus: !current.likedStatus })
-//         .catch((err) => {
-//           console.log('Error PATCH likedStatus ', err);
-//         });
-//     });
-//   }
-
-//   render() {
-//     const {
-//       current, likeHover, form, clickImproved, allAttractions, browse, openCalendar,
-//     } = this.state;
-//     return (
-//       <>
-//         {current ? (
-//           <div className={css.attraction}>
-//             <div className={css.trip} onClick={() => this.setState({ browse: !browse })}>
-//               <img src={tripLogo} alt="triplogo" />
-//             </div>
-//             {browse && (
-//             <div className={css.buttons}>
-//               {allAttractions.map((attraction, i) => (
-//                 <button key={Math.random().toString()} className={css.browseButton} type="button" onClick={() => this.buttonBrowser(attraction)}>{i}</button>
-//               ))}
-//             </div>
-//             )}
-//             <Header
-//               current={current}
-//               updateHeartHover={this.updateHeartHover}
-//               updateLikeStatus={this.updateLikeStatus}
-//               likeHover={likeHover}
-//             />
-//             <Overview
-//               overview={current.overview}
-//               form={form}
-//               clicked={clickImproved}
-//               openCloseForm={this.openCloseForm}
-//               handleFormChange={this.handleFormChange}
-//               submitImprovements={this.submitImprovements}
-//               id={current._id} /* eslint-disable-line no-underscore-dangle */
-//             />
-//             <Tickets
-//               current={current}
-//               blackouts={current.closedDays}
-//             />
-//             <Images
-//               images={current.imageUrl}
-//               travelersChoice={current.travelersChoiceAward}
-//               id={current._id} /* eslint-disable-line no-underscore-dangle */
-//             />
-//           </div>
-//         ) : <div className={css.loading}>Loading...new1</div>}
-//       </>
-//     );
-//   }
-// }
