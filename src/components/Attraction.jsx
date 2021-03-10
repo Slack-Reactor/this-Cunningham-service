@@ -98,6 +98,10 @@ const Attraction = () => {
       }).catch((err) => console.log('error GETTING all', err));
   }, []);
 
+  useEffect(() => {
+    // make it so form closes every time current changes
+  }, [current]);
+
   const updateHeartHover = () => setLikeHover((h) => !h);
   const updateLikeStatus = () => {
     axios.patch(`api/showcase/like/${current._id}`, { likedStatus: !current.likedStatus })
