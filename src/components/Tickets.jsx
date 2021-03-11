@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { GrTicket } from 'react-icons/gr';
 import Calendar from './Calendar';
@@ -9,6 +9,10 @@ import css from '../styles/tickets.module.css';
 const Tickets = ({ current, blackouts }) => {
   const [calendarView, setCalendarView] = useState(false);
   const toggleCalendar = () => setCalendarView((v) => !v);
+
+  useEffect(() => {
+    setCalendarView(false);
+  }, [current]);
 
   return (
     <div className={css.tickets}>
