@@ -67,6 +67,7 @@ const useForm = (initialValue) => {
     handleFormChange,
     openCloseForm,
     submitImprovements,
+    setClickImproved,
   };
 };
 const initialFormState = {
@@ -88,6 +89,7 @@ const Attraction = () => {
     handleFormChange,
     openCloseForm,
     submitImprovements,
+    setClickImproved,
   } = useForm(initialFormState);
 
   useEffect(() => {
@@ -99,6 +101,7 @@ const Attraction = () => {
   }, []);
 
   useEffect(() => {
+    setClickImproved();
     // make it so form closes every time current changes
   }, [current]);
 
