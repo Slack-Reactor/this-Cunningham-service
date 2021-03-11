@@ -18,6 +18,15 @@ const TicketCounter = ({ type, increment, decrement, count }) => (
 const Calendar = ({ blackouts, price }) => {
   const [adultCount, setAdultCount] = useState(0);
   const [childCount, setChildCount] = useState(0);
+  const [selectedDay, setSelectedDay] = useState('Today');
+
+  const transformDay = (day) => {
+    const date = new Date(day);
+    const month = date.getMonth() + 1;
+    const monthDay = date.getDate();
+    setSelectedDay(`${month}/${monthDay}`);
+  };
+
   const increment = (type) => {
     if (type === 'adult') {
       if (adultCount === 10) return;
@@ -53,9 +62,12 @@ const Calendar = ({ blackouts, price }) => {
           }
         `}
       </style>
-      <DayPicker disabledDays={blackouts.map((item) => new Date(item))} />
+      <DayPicker
+        disabledDays={blackouts.map((item) => new Date(item))}
+        onDayMouseDown={transformDay}
+      />
       <div className={css.ticketCounter}>
-        <h2>Tickets</h2>
+        <h2>Tickets for {selectedDay}</h2>
         <TicketCounter
           type="Adult"
           count={adultCount}
