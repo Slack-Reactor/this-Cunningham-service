@@ -5,7 +5,9 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import css from '../styles/calendar.module.css';
 
-const TicketCounter = ({ type, increment, decrement, count }) => (
+const TicketCounter = ({
+  type, increment, decrement, count,
+}) => (
   <div className={css.counter}>
     <button className={css.counterButton} onClick={decrement}>-</button>
     <div className={css.count}>{count}</div>
