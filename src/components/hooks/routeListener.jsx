@@ -1,5 +1,5 @@
+/* eslint-disable no-console */
 /* eslint-disable consistent-return */
-import React from 'react';
 import axios from 'axios';
 
 const useRouteListener = () => {
