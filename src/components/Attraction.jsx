@@ -93,7 +93,7 @@ const Attraction = () => {
     setClickImproved,
   } = useForm(initialFormState);
 
-  const { masterState, handleIdClick, handleUrlEvent } = useRouteListener({ id: 0 });
+  const { handleIdClick, handleUrlEvent } = useRouteListener({ id: 0 });
 
   useEffect(() => {
     axios.get('/api/showcase')
@@ -104,14 +104,15 @@ const Attraction = () => {
   }, []);
 
   useEffect(() => {
-    // define callback as separate function so it can be removed later with cleanup function
-    const onLocationChange = () => {
-      console.log(window.location.pathname);
+    const handleShowcaseUrlEvent = () => {
+      handleUrlEvent('showcase')
+        .then((attraction) => setCurrent(attraction));
     };
-    window.addEventListener('popstate', onLocationChange);
+
+    window.addEventListener('popstate', handleShowcaseUrlEvent);
     // clean up event listener
     return () => {
-      window.removeEventListener('popstate', onLocationChange);
+      window.removeEventListener('popstate', handleShowcaseUrlEvent);
     };
   }, []);
 
@@ -144,7 +145,7 @@ const Attraction = () => {
           {browse && (
           <div className={css.buttons}>
             {allAttractions.map((attraction, i) => (
-              <button key={Math.random().toString()} className={css.browseButton} type="button" onClick={() => setCurrent(attraction)}>{i}</button>
+              <button key={Math.random().toString()} className={css.browseButton} type="button" onClick={() => handleIdClick(i)}>{i}</button>
             ))}
           </div>
           )}

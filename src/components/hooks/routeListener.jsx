@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+/* eslint-disable consistent-return */
+import React from 'react';
 import axios from 'axios';
 
-const useRouteListener = (initialState) => {
-  const [masterState, setMasterState] = useState(initialState);
-
+const useRouteListener = () => {
   const handleIdClick = (id) => {
     window.history.pushState({}, '', `http://localhost:3001/id/${id}`);
     const navEvent = new PopStateEvent('popstate');
@@ -13,16 +12,16 @@ const useRouteListener = (initialState) => {
   const handleUrlEvent = (service) => {
     const id = window.location.pathname.slice(4);
     if (service === 'showcase') {
-      axios.get(`http://localhost:3001/api/showcase/${id}`)
-        .then((data) => {
-          setMasterState(data);
+      return axios.get(`http://localhost:3001/api/showcase/${id}`)
+        .then(({ data }) => {
+          window.history.pushState({}, '', 'http://localhost:3001');
+          return data;
         })
         .catch((err) => console.log('Error GET by id:', err));
     }
   };
 
   return {
-    masterState,
     handleIdClick,
     handleUrlEvent,
   };
