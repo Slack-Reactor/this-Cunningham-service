@@ -53,7 +53,8 @@ const useForm = (initialValue) => {
     if (JSON.stringify(form) === JSON.stringify(current.overview)) {
       console.log('Must Submit Improvements to Current Attraction Listing');
     } else {
-      axios.post(`/api/showcase/${id}`, { form })
+      axios.post(`http://localhost:3001/api/showcase/${id}`, { form })
+      // axios.post(`/api/showcase/${id}`, { form })
         .then(({ data }) => {
           openCloseForm(current);
           console.log(data.message);
@@ -96,7 +97,8 @@ const Attraction = () => {
   const { handleIdClick, handleUrlEvent } = useRouteListener({ id: 0 });
 
   useEffect(() => {
-    axios.get('/api/showcase')
+    // axios.get('/api/showcase')
+    axios.get('http://localhost:3001/api/showcase')
       .then(({ data }) => {
         setAllAttractions(data);
         setCurrent(data[0]);
@@ -123,7 +125,8 @@ const Attraction = () => {
 
   const updateHeartHover = () => setLikeHover((h) => !h);
   const updateLikeStatus = () => {
-    axios.patch(`api/showcase/like/${current._id}`, { likedStatus: !current.likedStatus })
+    // axios.patch(`api/showcase/like/${current._id}`, { likedStatus: !current.likedStatus })
+    axios.patch(`http://localhost:3001/api/showcase/like/${current._id}`, { likedStatus: !current.likedStatus })
       .then(() => {
         setCurrent({
           ...current,
