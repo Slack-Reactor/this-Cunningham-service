@@ -19,6 +19,14 @@ const useRouteListener = () => {
         })
         .catch((err) => console.log('Error GET by id:', err));
     }
+    if (service === 'recommend') {
+      return axios.get(`http://localhost:3002/`)
+        .then(({ data }) => {
+          window.history.pushState({}, '', 'http://localhost:3000');
+          return data;
+        })
+        .catch((err) => console.log('Error GET by id port 3002', err));
+    }
   };
 
   return {
