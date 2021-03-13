@@ -8,6 +8,7 @@ import Header from './Header';
 import Overview from './Overview';
 import Tickets from './Tickets';
 import Images from './Images';
+import useRouteListener from './hooks/routeListener';
 import css from '../styles/attraction.module.css';
 // const awsDNS = 'http://ec2-3-139-68-84.us-east-2.compute.amazonaws.com';
 const tripLogo = 'https://fec-tripadvisor-images.s3.us-east-2.amazonaws.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered-small_RGB.svg';
@@ -92,12 +93,27 @@ const Attraction = () => {
     setClickImproved,
   } = useForm(initialFormState);
 
+  const { handleIdClick, handleUrlEvent } = useRouteListener({ id: 0 });
+
   useEffect(() => {
     axios.get('/api/showcase')
       .then(({ data }) => {
         setAllAttractions(data);
         setCurrent(data[0]);
       }).catch((err) => console.log('error GETTING all', err));
+  }, []);
+
+  useEffect(() => {
+    const handleShowcaseUrlEvent = () => {
+      handleUrlEvent('showcase')
+        .then((attraction) => setCurrent(attraction));
+    };
+
+    window.addEventListener('popstate', handleShowcaseUrlEvent);
+    // clean up event listener
+    return () => {
+      window.removeEventListener('popstate', handleShowcaseUrlEvent);
+    };
   }, []);
 
   useEffect(() => {
@@ -129,7 +145,7 @@ const Attraction = () => {
           {browse && (
           <div className={css.buttons}>
             {allAttractions.map((attraction, i) => (
-              <button key={Math.random().toString()} className={css.browseButton} type="button" onClick={() => setCurrent(attraction)}>{i}</button>
+              <button key={Math.random().toString()} className={css.browseButton} type="button" onClick={() => handleIdClick(i)}>{i}</button>
             ))}
           </div>
           )}
