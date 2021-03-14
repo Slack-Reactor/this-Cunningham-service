@@ -11,7 +11,7 @@ import Images from './Images';
 import useRouteListener from './hooks/routeListener';
 import css from '../styles/attraction.module.css';
 // const awsDNS = 'http://ec2-3-139-68-84.us-east-2.compute.amazonaws.com';
-const tripLogo = 'https://fec-tripadvisor-images.s3.us-east-2.amazonaws.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered-small_RGB.svg';
+const tripLogo = 'https://fec-tripadvisor-images.s3.us-east-2.amazonaws.com/images/travel_sherpa_icon.svg';
 
 const useForm = (initialValue) => {
   const [clickImproved, setClickImproved] = useState(false);

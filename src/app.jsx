@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
@@ -6,10 +7,11 @@ import Modal from './components/Modal';
 import './styles/styles.css';
 import css from './styles/modal.module.css';
 
-const Login = ({ setWelcomeModal, loginMessage }) => {
-  const demoLogin = () => {
-    setWelcomeModal(false);
-  };
+const initialLoginMessage = 'Login will be stored in current session';
+
+const Login = ({ setWelcomeModal }) => {
+  const [loginMessage, setLoginMessage] = useState(initialLoginMessage);
+
   const loginRef = useRef();
   const passwordRef = useRef();
 
@@ -17,28 +19,29 @@ const Login = ({ setWelcomeModal, loginMessage }) => {
     if (loginRef.current.value === 'demo' && passwordRef.current.value === 'demo') {
       setWelcomeModal(false);
       sessionStorage.setItem('login', true);
+      setLoginMessage('');
     } else {
-
+      setLoginMessage('Username/password is incorrect');
     }
   };
 
   return (
     <div className={css.loginModal}>
-      <h1>Welcome to the Travel Sherpa Demo!</h1>
-      <p>Please login with username: "demo" and password: "demo"</p>
+      <h3>Travel Sherpa Demo</h3>
+      <h4>Please Login</h4>
+      <p><strong>username:</strong> demo, password: demo</p>
       <div>
         <input name="login" ref={loginRef} type="text" placeholder="username" />
-        <input type="password" ref={passwordRef} placeholder="password" />
-        <button onClick={checkLogin}>Enter</button>
-        <p>{loginMessage}</p>
+        <input type="text" ref={passwordRef} placeholder="password" />
       </div>
+      <button onClick={checkLogin}>Enter</button>
+      <p>{loginMessage}</p>
     </div>
   );
 };
 
 const App = () => {
-  const [welcomeModal, setWelcomeModal] = useState(false);
-  const [loginMessage, setLoginMessage] = useState('');
+  const [welcomeModal, setWelcomeModal] = useState(true);
 
   useEffect(() => {
     if (sessionStorage.getItem('login') === 'true') {
