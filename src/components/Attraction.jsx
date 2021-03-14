@@ -176,7 +176,7 @@ const Attraction = ({ firstTime }) => {
             travelersChoice={current.travelersChoiceAward}
             id={current._id} /* eslint-disable-line no-underscore-dangle */
           />
-          {firstTime && introCycle === 0 && <Modal><IntroWidget introCycle={introCycle} /></Modal>}
+          {firstTime && <Modal><IntroWidget /></Modal>}
         </div>
       ) : <div className={css.loading}>Loading...new1</div>}
     </>
