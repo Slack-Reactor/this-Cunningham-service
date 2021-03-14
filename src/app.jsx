@@ -16,6 +16,10 @@ const Login = ({ setWelcomeModal }) => {
   const loginRef = useRef();
   const passwordRef = useRef();
 
+  useEffect(() => {
+    loginRef.current.focus();
+  }, []);
+
   const checkLogin = () => {
     if (loginRef.current.value === 'demo' && passwordRef.current.value === 'demo') {
       setWelcomeModal(false);

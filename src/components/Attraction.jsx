@@ -10,6 +10,7 @@ import Tickets from './Tickets';
 import Images from './Images';
 import useRouteListener from './hooks/routeListener';
 import Modal from './Modal';
+import IntroWidget from './IntroWidget';
 import css from '../styles/attraction.module.css';
 // const awsDNS = 'http://ec2-3-139-68-84.us-east-2.compute.amazonaws.com';
 const tripLogo = 'https://fec-tripadvisor-images.s3.us-east-2.amazonaws.com/images/travel_sherpa_icon.svg';
