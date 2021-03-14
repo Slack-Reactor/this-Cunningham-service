@@ -45,10 +45,12 @@ const Login = ({ setWelcomeModal }) => {
 
 const App = () => {
   const [welcomeModal, setWelcomeModal] = useState(true);
+  const [firstTime, setFirstTime] = useState(true);
 
   useEffect(() => {
     if (sessionStorage.getItem('login') === 'true') {
       setWelcomeModal(false);
+      setFirstTime(false);
     } else {
       setWelcomeModal(true);
     }
@@ -60,7 +62,7 @@ const App = () => {
         <Modal>
           <Login setWelcomeModal={setWelcomeModal} />
         </Modal>
-      ) : <Attraction />}
+      ) : <Attraction firstTime={firstTime} />}
     </>
   );
 };
