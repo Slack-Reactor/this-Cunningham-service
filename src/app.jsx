@@ -7,6 +7,7 @@ import Modal from './components/Modal';
 import './styles/styles.css';
 import css from './styles/modal.module.css';
 
+const tripLogo = 'https://fec-tripadvisor-images.s3.us-east-2.amazonaws.com/images/travel_sherpa_icon.svg';
 const initialLoginMessage = 'Login will be stored in current session';
 
 const Login = ({ setWelcomeModal }) => {
@@ -27,15 +28,17 @@ const Login = ({ setWelcomeModal }) => {
 
   return (
     <div className={css.loginModal}>
-      <h3>Travel Sherpa Demo</h3>
-      <h4>Please Login</h4>
-      <p><strong>username:</strong> demo, password: demo</p>
+      <h3 className={css.loginHeader}>Travel Sherpa Demo</h3>
+      <img className={css.loginIcon} src={tripLogo} alt="goat icon" />
+      <h4 className={css.loginHeader}>Please Login</h4>
+      <hr />
+      <p><strong>username:</strong> demo, <strong>password:</strong> demo</p>
       <div>
         <input name="login" ref={loginRef} type="text" placeholder="username" />
-        <input type="text" ref={passwordRef} placeholder="password" />
+        <input name="password" type="text" ref={passwordRef} placeholder="password" />
       </div>
-      <button onClick={checkLogin}>Enter</button>
       <p>{loginMessage}</p>
+      <button className={css.loginBtn} onClick={checkLogin}>Enter</button>
     </div>
   );
 };

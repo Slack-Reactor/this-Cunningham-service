@@ -141,6 +141,7 @@ const Attraction = () => {
         <div className={css.attraction}>
           <div className={css.trip} onClick={() => setBrowse((b) => !b)}>
             <img src={tripLogo} alt="triplogo" />
+            <h1>Travel Sherpa</h1>
           </div>
           {browse && (
           <div className={css.buttons}>
