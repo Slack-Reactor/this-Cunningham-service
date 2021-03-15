@@ -86,7 +86,9 @@ input[name=password]:focus {
   background-color: black;
   transition: .5s;
 }
+
 /* POPUP WIDGETS MODAL */
+
 @keyframes toggleIn {
   0% {
     opacity: 0;
@@ -109,6 +111,7 @@ input[name=password]:focus {
   position: fixed;
   z-index: 600;
   display: flex;
+  flex-direction: column;
   animation: toggleIn .6s 1;
   background-color: white;
   font-size: 14px;
@@ -118,24 +121,34 @@ input[name=password]:focus {
   border-radius: 10px;
 }
 
+.cycleBtn {
+  border: none;
+}
+
 .introCycle0 {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  grid-column: 2/3;
+  grid-row: 2/4;
+  /* transform: translate(-50%, -50%); */
   width: 200px;
 }
 .introCycle1 {
-  left: 30%;
-  top: 20%;
+  grid-column: 1/2;
+  grid-row: 2/3;
   width: 200px;
 }
 .introCycle2 {
-  left: 30%;
-  top: 70%;
+  grid-column: 1/2;
+  grid-row: 4/5;
   width: 200px;
 }
 .introCycle3 {
-  left: 20%;
-  top: 10%;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  width: 200px;
+}
+
+.introCycle4 {
+  grid-column: 2/3;
+  grid-row: 3/4;
   width: 200px;
 }
