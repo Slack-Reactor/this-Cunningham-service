@@ -9,9 +9,11 @@ import Overview from './Overview';
 import Tickets from './Tickets';
 import Images from './Images';
 import useRouteListener from './hooks/routeListener';
+import Modal from './Modal';
+import IntroWidget from './IntroWidget';
 import css from '../styles/attraction.module.css';
 // const awsDNS = 'http://ec2-3-139-68-84.us-east-2.compute.amazonaws.com';
-const tripLogo = 'https://fec-tripadvisor-images.s3.us-east-2.amazonaws.com/images/Tripadvisor_Logo_circle-green_horizontal-lockup_registered-small_RGB.svg';
+const tripLogo = 'https://fec-tripadvisor-images.s3.us-east-2.amazonaws.com/images/travel_sherpa_icon.svg';
 
 const useForm = (initialValue) => {
   const [clickImproved, setClickImproved] = useState(false);
@@ -78,11 +80,12 @@ const initialFormState = {
   address: '',
 };
 
-const Attraction = () => {
+const Attraction = ({ firstTime }) => {
   const [allAttractions, setAllAttractions] = useState([]);
   const [current, setCurrent] = useState(null);
   const [likeHover, setLikeHover] = useState(false);
   const [browse, setBrowse] = useState(false);
+  const [introCycle, setIntroCycle] = useState(0);
 
   const {
     form,
@@ -141,6 +144,7 @@ const Attraction = () => {
         <div className={css.attraction}>
           <div className={css.trip} onClick={() => setBrowse((b) => !b)}>
             <img src={tripLogo} alt="triplogo" />
+            <h1>Travel Sherpa</h1>
           </div>
           {browse && (
           <div className={css.buttons}>
@@ -172,6 +176,14 @@ const Attraction = () => {
             travelersChoice={current.travelersChoiceAward}
             id={current._id} /* eslint-disable-line no-underscore-dangle */
           />
+          {firstTime && (
+          <Modal type={`introCycle${introCycle}`}>
+            <IntroWidget
+              introCycle={introCycle}
+              setIntroCycle={setIntroCycle}
+            />
+          </Modal>
+          )}
         </div>
       ) : <div className={css.loading}>Loading...new1</div>}
     </>

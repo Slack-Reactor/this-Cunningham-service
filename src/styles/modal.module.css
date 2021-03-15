@@ -1,3 +1,4 @@
+/* Suggestions Modal */
 .suggestionsModal {
   position: fixed;
   z-index: 500;
@@ -10,7 +11,7 @@
   box-sizing: border-box;
   border-radius: 10px;
 }
-
+/* Calendar Modal */
 .calendarModal {
   position: fixed;
   z-index: 501;
@@ -22,4 +23,132 @@
   top: 30%;
   box-sizing: border-box;
   border-radius: 10px;
+}
+/* Login MODAL */
+.loginModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 500;
+  background-color: #f9f2ea;
+  width: 400px;
+  box-shadow: 0px 3px 18px rgba(0, 0, 0, 0.233);
+  padding: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.loginIcon {
+  height: 70px;
+  width: auto;
+}
+
+.loginHeader {
+  margin: 0;
+}
+
+hr {
+  width: 100%;
+}
+
+.loginBtn {
+  border: none;
+  background-color: black;
+  color:white;
+  width: 50%;
+  height: 20px;
+  border-radius: 5px;
+  transition: .5s;
+  margin: 5px;
+}
+
+.loginBtn:hover {
+  color: black;
+  background-color: white;
+  transition: .5s;
+  cursor: pointer;
+}
+input[name=login] {
+  margin: 5px;
+}
+input[name=login]:focus {
+  color: white;
+  background-color: black;
+  transition: .5s;
+}
+input[name=password]:focus {
+  color: white;
+  background-color: black;
+  transition: .5s;
+}
+
+/* POPUP WIDGETS MODAL */
+
+@keyframes toggleIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes toggleOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.introPopups {
+  position: fixed;
+  z-index: 600;
+  display: flex;
+  flex-direction: column;
+  animation: toggleIn .6s 1;
+  background-color: white;
+  font-size: 14px;
+  box-shadow: 0px 3px 18px rgba(0, 0, 0, 0.233);
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.cycleBtn {
+  border: none;
+}
+
+.introCycle0 {
+  grid-column: 2/3;
+  grid-row: 2/4;
+  /* transform: translate(-50%, -50%); */
+  width: 200px;
+}
+.introCycle1 {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  width: 200px;
+}
+.introCycle2 {
+  grid-column: 1/2;
+  grid-row: 4/5;
+  width: 200px;
+}
+.introCycle3 {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  width: 200px;
+}
+
+.introCycle4 {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  width: 200px;
 }
